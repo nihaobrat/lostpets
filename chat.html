@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML Messenger</title>
+    <meta charset="UTF-8">
+    <style>
+      body {
+        background: #44a2a2;
+        }
+      #chat-box {
+        height: 400px;
+        width: 600px;
+        border: 1px solid black;
+        overflow-y: scroll;
+        padding: 10px;
+        margin-left: 460px;
+        margin-top: 50px;
+        background-color: white;
+        box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+      }
+      #input-box {
+        width: 491px;
+        padding: 10px;
+        margin-top: 10px;
+        margin-left: 460px;
+        border: none;
+        border-bottom: 1px solid #ddd;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        background-color: #f2f2f2;
+      }
+      #send-button {
+        padding: 10px;
+        background-color: #FB8200;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 20px;
+      }
+      #send-button:hover {
+        background-color: #FB8200;
+      }
+      #send-button:active {
+        background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+      }
+      .message {
+        display: flex;
+        margin: 10px;
+      }
+      .message p {
+        margin: 0;
+        padding: 10px;
+        font-size: 18px;
+        line-height: 24px;
+        border-radius: 10px;
+        background-color: #f1f1f1;
+      }
+      .message.from-me p {
+        background-color: #4CAF50;
+        color: white;
+        align-self: flex-end;
+      }
+      .message.from-me + .message.from-me p {
+        border-top-right-radius: 3px;
+      }
+      .message.from-me p:last-child {
+        border-radius: 3px;
+      }
+      .message.from-them p {
+        background-color: white;
+        color: black;
+        align-self: flex-start;
+        border: 1px solid #ddd;
+      }
+      .message.from-them + .message.from-them p {
+        border-top-left-radius: 3px;
+      }
+      .message.from-them p:last-child {
+        border-radius: 3px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="chat-box"></div>
+    <form method="POST" action="add_message.php">
+      <input type="text" id="input-box" name="message" placeholder="Введите сообщение...">
+      <button id="send-button" type="submit">Отправить</button>
+    </form>
+
+    <script>
+      let chatBox = document.getElementById("chat-box");
+      let inputBox = document.getElementById("input-box");
+      let sendButton = document.getElementById("send-button");
+
+      sendButton.addEventListener("click", function(event) {
+        event.preventDefault(); // Отменяем стандартное поведение формы
+        let message = inputBox.value;
+        inputBox.value = "";
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "add_message.php");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            let response = JSON.parse(this.responseText);
+            if (response.status == "success") {
+              // Добавляем новое сообщение в чат-окно
+              let newMessage = document.createElement("div");
+              newMessage.classList.add("message", "from-me");
+              let messageText = document.createElement("p");
+              messageText.innerText = response.message;
+              newMessage.appendChild(messageText);
+              chatBox.appendChild(newMessage);
+              // Получаем все сообщения и выводим их в чат-окно
+              let xhr2 = new XMLHttpRequest();
+              xhr2.open("GET", "get_messages.php");
+              xhr2.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  let response2 = JSON.parse(this.responseText);
+                  if (response2.status == "success") {
+                    chatBox.innerHTML = "";
+                    for (let i = 0; i < response2.messages.length; i++) {
+                      let newMessage = document.createElement("div");
+                      newMessage.classList.add("message");
+                      if (i % 2 == 0) {
+                        newMessage.classList.add("from-them");
+                      } else {
+                        newMessage.classList.add("from-me");
+                      }
+                      let messageText = document.createElement("p");
+                      messageText.innerText = response2.messages[i];
+                      newMessage.appendChild(messageText);
+                      chatBox.appendChild(newMessage);
+                    }
+                  }
+                }
+              };
+              xhr2.send();
+            }
+          }
+        };
+        xhr.send("message=" + encodeURIComponent(message));
+      });
+    </script>
+  </body>
+</html>
