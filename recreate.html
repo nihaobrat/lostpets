@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Заполните данные о себе и своем питомце</title>
+ <style>
+  body {
+   font-family: Arial, sans-serif;
+   background: #ffffff;
+   color: #ffffff;
+   line-height: 1.5;
+   margin: 0;
+   padding: 0;
+  }
+  .container {
+   max-width: 800px;
+   margin: 0 auto;
+   padding: 40px 20px;
+   box-sizing: border-box;
+   background-color: #44a2a2;
+   box-shadow: 0px 0px 10px rgba(0,0,0,0,0.5);
+   border-radius: 10px;
+   margin-top: 40px;
+  }
+  h1, h2 {
+   text-align: center;
+   margin: 20px 0;
+   text-transform: uppercase;
+   color: #ffffff;
+   font-size: 30px;
+  }
+  label {
+   display: block;
+   margin-bottom: 20px;
+   font-weight: bold;
+   color: #ffffff;
+   font-size: 20px;
+  }
+  input[type="text"],
+  input[type="number"] {
+   width: 100%;
+   padding: 10px;
+   border: none;
+   background: #ffffff;
+   border-radius: 5px;
+   font-size: 16px;
+   box-sizing: border-box;
+   margin-bottom: 10px;
+  }
+  input[type="submit"] {
+   background-color: #fb8200;
+   color: white;
+   padding: 12px 20px;
+   border: none;
+   border-radius: 5px;
+   font-size: 16px;
+   cursor: pointer;
+   text-transform: uppercase;
+   margin-top: 20px;
+   display: block;
+   margin: 0 auto;
+  }
+  input[type="submit"]:hover {
+   background-color: #fb8200;
+  }
+  fieldset {
+   border: none;
+   margin: 0;
+   padding: 0;
+  }
+  legend {
+   font-size: 20px;
+   font-weight: bold;
+   margin-bottom: 20px;
+   color: #ffffff;
+   text-transform: uppercase;
+  }
+  input:focus, select:focus {
+   outline: none;
+   box-shadow: 0px 0px 5px #4CAF50;
+  }
+  @media (max-width: 767px) {
+   .container {
+    margin-top: 20px;
+   }
+   h1 {
+    margin-top: 0;
+   }
+  }
+ </style>
+</head>
+<body>
+ <div class="container">
+  <h1>Заполните данные о себе и своем питомце</h1>
+  <form action="rehome.html">
+   <fieldset>
+    <legend>Ваши данные:</legend>
+    <label for="name">Ваше имя:</label>
+    <input type="text" id="name" name="name" placeholder="Введите ваше имя" required>
+
+    <label for="pet-name">Кличка вашего питомца:</label>
+    <input type="text" id="pet-name" name="pet-name" placeholder="Введите кличку питомца" required>
+
+    <label for="pet-age">Возраст вашего питомца:</label>
+    <input type="number" id="pet-age" name="pet-age" min="0" max="100" placeholder="Введите возраст питомца" required>
+
+    <label for="pet-breed">Порода вашего питомца:</label>
+    <input type="text" id="pet-breed" name="pet-breed" placeholder="Введите породу питомца" required>
+   </fieldset>
+   <input type="submit" value="Сохранить изменения">
+  </form>
+ </div>
+</body>
+</html>
