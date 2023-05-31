@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+	<title>FULL REGISTRATION</title>
+	<style>
+        /* задаем общие стили */
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* задаем стили для картинки */
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 1150px;
+			height: 640px;
+			padding: 10px;
+			margin-left: 100px;
+		}
+
+        /* задаем стили для заголовка */
+        h1 {
+            position: absolute;
+            top: 69px;
+            left: 300px;
+            font-size: 34px;
+            color: black;
+
+            margin-left: 200px;
+        }
+
+        /* задаем стили для подписи */
+        p {
+            position: absolute;
+            top: 120px;
+            left: 320px;
+            font-size: 20px;
+            color: white;
+
+            margin-left: 182px;
+        }
+
+        /* задаем общие стили для всех полей ввода */
+		input {
+			position: absolute;
+			padding: 10px;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+            margin-left: 255px;
+		}
+
+        /* задаем размещение для каждого поля ввода */
+		#name {
+			top: 230px;
+			left: 300px;
+			width: 19%;
+		}
+
+		#pet-name {
+			top: 310px;
+			left: 300px;
+			width: 19%;
+		}
+
+		#pet-age {
+			top: 390px;
+			left: 300px;
+			width: 19%;
+		}
+
+		#pet-breed {
+			top: 470px;
+			left: 300px;
+			width: 19%;
+		}
+
+        /* задаем стили для кнопки submit */
+		button[type=submit] {
+			position: absolute;
+			top: 555px;
+			left: 300px;
+			padding: 10px 20px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			margin-left: 285px;
+		}
+
+        /* скрываем надписи */
+        label {
+            display: none;
+            margin-left: 300px;
+
+        }
+	</style>
+</head>
+<body>
+	<img src="лого4.png" alt="Мое изображение">
+    <h1>Ваш профиль</h1>
+    <p>Введите данные для входа</p>
+	<form action="completeregistr.html">
+		<input type="text" id="name" name="name" placeholder="Введите новое имя">
+
+		<input type="text" id="pet-name" name="pet-name" placeholder="Введите новую кличку питомца">
+
+		<input type="text" id="pet-age" name="pet-age" placeholder="Измените возраст питомца">
+
+		<input type="text" id="pet-breed" name="pet-breed" placeholder="Измените породу питомца">
+
+		<button type="submit">Сохранить изменения</button>
+	</form>
+</body>
+</html>
+
